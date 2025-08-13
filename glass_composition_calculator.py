@@ -48,7 +48,7 @@ def calculate_masses(df_in: pd.DataFrame, total_mass_g: float, basis: Basis = "m
     df = df.rename(columns={"fraction": f"{basis} (normalised)"})
     return df
 
-st.title("🧪 Glass Composition Calculator (2–5 components)")
+st.title("🧪 Glass Composition Calculator (2–5 compounds)")
 st.caption("initiative by Siddiq Fadhil, UKM Malaysia")
 
 # Session state init
@@ -70,17 +70,17 @@ with st.sidebar:
 
     c1, c2 = st.columns(2)
     with c1:
-        if st.button("Add component", use_container_width=True):
+        if st.button("Add compounds", use_container_width=True):
             if st.session_state.n < 5:
                 st.session_state.n += 1
             else:
-                st.warning("Maximum is 5 components.")
+                st.warning("Maximum is 5 compounds.")
     with c2:
         if st.button("Remove last", use_container_width=True):
             if st.session_state.n > 2:
                 st.session_state.n -= 1
             else:
-                st.warning("Minimum is 2 components.")
+                st.warning("Minimum is 2 compounds.")
     if st.button("Reset example"):
         st.session_state.n = 3
         st.session_state.rows = [
@@ -91,7 +91,7 @@ with st.sidebar:
             {"name":"","molar_mass_g_mol":0.0,"fraction":0.0},
         ]
 
-st.markdown("### Enter components")
+st.markdown("### Enter compounds")
 cols = st.columns([2,2,2])
 cols[0].markdown("**Name**")
 cols[1].markdown("**Molar mass (g/mol)**")
@@ -117,13 +117,13 @@ if not df_in.empty and df_in["fraction"].sum() > 0 and st.session_state.n >= 2:
         result = calculate_masses(df_in, total_mass_g=total_mass_g, basis=basis)
         st.dataframe(result, use_container_width=True)
         st.metric("Total mass (g)", f"{result['mass_g'].sum():.6f}")
-        st.metric("Components", f"{len(result)}")
+        st.metric("compounds", f"{len(result)}")
         st.download_button("Download results CSV", result.to_csv(index=False).encode("utf-8"),
                            file_name="glass_batch_result.csv", mime="text/csv")
     except Exception as e:
         st.error(str(e))
 else:
-    st.info("Enter at least two components and make sure the fraction sum is > 0%.")
+    st.info("Enter at least two compounds and make sure the fraction sum is > 0%.")
 
 # ---- MD-style box ----
 st.markdown("---")
