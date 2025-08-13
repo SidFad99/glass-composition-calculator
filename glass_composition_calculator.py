@@ -8,7 +8,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
-st.set_page_config(page_title="Glass Batch + MD Box (coloured)", page_icon="🧪", layout="wide")
+st.set_page_config(page_title="Glass Composition Calculator", page_icon="🧪", layout="wide")
 
 Basis = Literal["mol%", "wt%"]
 
@@ -48,7 +48,8 @@ def calculate_masses(df_in: pd.DataFrame, total_mass_g: float, basis: Basis = "m
     df = df.rename(columns={"fraction": f"{basis} (normalised)"})
     return df
 
-st.title("🧪 Glass Batch Calculator — coloured MD-style Box (2–5 components)")
+st.title("🧪 Glass Composition Calculator (2–5 components)")
+st.caption("initiative by Siddiq Fadhil, UKM Malaysia")
 
 # Session state init
 if "n" not in st.session_state:
