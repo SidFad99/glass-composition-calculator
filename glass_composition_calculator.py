@@ -1,5 +1,5 @@
 # streamlit run glass_batch_gui_inputs_v4.py
-# GUI: 2–5 compounds glass batch calculator + MD-style box with per-component colours
+# GUI: 2–5 compounds glass batch calculator + MD-style box with per-compounds colours
 import math
 from typing import Literal, List, Dict
 import numpy as np
@@ -127,7 +127,7 @@ else:
 
 # ---- MD-style box ----
 st.markdown("---")
-st.header("📦 MD-style Simulation Box (coloured per component)")
+st.header("📦 MD-style Simulation Box (coloured per compounds)")
 st.caption("Random placement visual by composition. Not a physical packing/dynamics simulation.")
 
 with st.expander("Box settings", expanded=True):
@@ -186,7 +186,7 @@ if result is not None:
         ax.scatter(pos[mask,0], pos[mask,1], pos[mask,2], s=2, color=colours[t], label=name)
     ax.set_xlim(0, box_len); ax.set_ylim(0, box_len); ax.set_zlim(0, box_len)
     ax.set_xlabel("x (Å)"); ax.set_ylabel("y (Å)"); ax.set_zlabel("z (Å)")
-    ax.set_title("Random placement by composition (coloured by component)")
+    ax.set_title("Random placement by composition (coloured by compounds)")
     ax.legend(loc="upper right", fontsize=8, markerscale=4)
     st.pyplot(fig)
 
