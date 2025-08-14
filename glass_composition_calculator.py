@@ -92,6 +92,7 @@ def make_xyz_lines(names, counts, coords, box_len_A: float):
 
 # ---------------------- UI ----------------------
 st.title("Glass Composition Calculator & MD-style Box")
+st.caption("initiative by Siddiq Fadhil, UKM Malaysia")
 st.caption("Mass per compound now follows the original calculation rules exactly.")
 
 left, right = st.columns((1.2, 1))
